@@ -52,9 +52,9 @@ const resolvers = {
       console.log("You don't have enough credits for that");
     }
 
-    thirdParty.credits = thirdParty.credits + creditsSent;
-    console.log("user0 teste depois", user0);
-    console.log("third party teste depois", thirdParty);
+    thirdParty.credits = Number(thirdParty.credits) + Number(creditsSent);
+    console.log("user0 test after transaction", user0);
+    console.log("third party test after transaction", thirdParty);
   },
 };
 
@@ -67,11 +67,17 @@ app.use(
   })
 );
 
+app.use("/credit/:credits/:id", (req, res, next) => {
+  resolvers.creditTransaction(req.params.credits, req.params.id);
+  console.log("after transaction", providers.users);
+  res.send(providers.users);
+});
+
 app.listen(3000, () => {
   console.log("server on");
-  resolvers.createUser("User0");
-  resolvers.createUser("User1");
-  resolvers.createUser("User2");
+  resolvers.createUser("User 0");
+  resolvers.createUser("User 1");
+  resolvers.createUser("User 2");
   console.log(providers.users);
   resolvers.creditTransaction(50, 1);
 });
