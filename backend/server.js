@@ -42,6 +42,20 @@ const resolvers = {
 
     return user;
   },
+  creditTransaction(creditsSent, id) {
+    const thirdParty = providers.users.find((item) => item.id === Number(id));
+
+    const user0 = providers.users.find((item) => item.id === 0);
+    if (creditsSent <= user0.credits) {
+      user0.credits = user0.credits - creditsSent;
+    } else {
+      console.log("You don't have enough credits for that");
+    }
+
+    thirdParty.credits = thirdParty.credits + creditsSent;
+    console.log("user0 teste depois", user0);
+    console.log("third party teste depois", thirdParty);
+  },
 };
 
 app.use(
@@ -55,7 +69,9 @@ app.use(
 
 app.listen(3000, () => {
   console.log("server on");
+  resolvers.createUser("User0");
   resolvers.createUser("User1");
   resolvers.createUser("User2");
   console.log(providers.users);
+  resolvers.creditTransaction(50, 1);
 });
