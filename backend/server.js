@@ -1,6 +1,7 @@
 const app = require("express")();
 const { graphqlHTTP } = require("express-graphql");
 const { buildSchema } = require("graphql");
+const cors = require("cors");
 
 const schema = buildSchema(`
   type User {
@@ -67,10 +68,22 @@ app.use(
   })
 );
 
-app.use("/credit/:credits/:id", (req, res, next) => {
-  resolvers.creditTransaction(req.params.credits, req.params.id);
-  console.log("after transaction", providers.users);
-  res.send(providers.users);
+app.use(cors());
+
+app.get("/credit/:credits/:id", (req, res) => {
+  const credits = req.params.credits;
+  const id = req.params.id;
+
+  console.log("transaction done");
+  const result = resolvers.creditTransaction(Number(credits), Number(id));
+
+  res.json(result);
+});
+
+app.get("/users", (req, res) => {
+  const users = resolvers.users();
+  console.log("users route");
+  res.json(users);
 });
 
 app.listen(3000, () => {
