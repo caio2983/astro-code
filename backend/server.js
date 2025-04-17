@@ -17,10 +17,17 @@ const schema = buildSchema(`
   type Mutation {
     createUser(name: String!): User
   }
+  type Transaction {
+  idThirdParty: ID!
+  nameThirdParty: String!
+  creditsSent: Int!
+
+  }
 `);
 
 const providers = {
   users: [],
+  transactions: [],
 };
 
 let id = 0;
@@ -53,9 +60,20 @@ const resolvers = {
       console.log("You don't have enough credits for that");
     }
 
+    const transaction = {
+      id: id,
+      nameThirdParty: thirdParty.name,
+      creditsSent: creditsSent,
+    };
+
+    providers.transactions.push(transaction);
+
     thirdParty.credits = Number(thirdParty.credits) + Number(creditsSent);
     console.log("user0 test after transaction", user0);
     console.log("third party test after transaction", thirdParty);
+  },
+  getTransactions() {
+    return providers.transactions;
   },
 };
 
@@ -84,6 +102,11 @@ app.get("/users", (req, res) => {
   const users = resolvers.users();
   console.log("users route");
   res.json(users);
+});
+
+app.get("/transactions", (req, res) => {
+  console.log(providers.transactions);
+  res.json(providers.transactions);
 });
 
 app.listen(3000, () => {
