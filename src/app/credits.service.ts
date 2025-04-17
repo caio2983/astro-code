@@ -17,5 +17,9 @@ export class CreditsService {
     return this.http.get(`http://localhost:3000/credit/${credits}/${id}`);
   }
 
+  getTransactions() {
+    return this.http.get<any[]>('http://localhost:3000/transactions');
+  }
+
   constructor() {}
 }

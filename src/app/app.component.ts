@@ -14,6 +14,7 @@ export class AppComponent {
   title = 'astro-code';
 
   users$!: Observable<any[]>;
+  transactions!: any[];
 
   constructor(private credits: CreditsService) {}
 
@@ -21,11 +22,19 @@ export class AppComponent {
     this.getUsers();
   }
 
+  getTransactions() {
+    this.credits.getTransactions().subscribe((data) => {
+      this.transactions = data;
+      console.log('dados recebidos:', data);
+    });
+  }
+
   getUsers() {
     this.users$ = this.credits.getUsers();
   }
 
   creditsTransaction(credits: number | string, id: number | string) {
+    // .subscribe() reacts to the data's arrival
     this.credits.creditsTransaction(credits, id).subscribe((response) => {
       this.getUsers();
     });

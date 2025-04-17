@@ -5,4 +5,11 @@
   </div>
 </li>
 
+<div>
+  <li *ngFor="let transaction of transactions">
+    {{ transaction.creditsSent }} credits sent to
+    {{ transaction.nameThirdParty }}
+  </li>
+</div>
 <button (click)="creditsTransaction(10, 1)">Transaction</button>
+<button (click)="getTransactions()">Show Transactions</button>
