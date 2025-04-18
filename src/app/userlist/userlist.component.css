@@ -1,0 +1,24 @@
+.user-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 40%;
+  margin: 8px;
+}
+
+.user-name {
+  color: blue;
+  font-weight: bold;
+}
+
+.user-0 {
+  position: relative;
+  top: 8px;
+  left: 8px;
+  width: 200px;
+  height: 50px;
+  border: 2px solid black;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-bottom: 24px;
+}

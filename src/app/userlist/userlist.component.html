@@ -1,0 +1,14 @@
+<div class="user-0">
+  <p>You have {{ user0.credits }} credits</p>
+</div>
+
+<div class="user-list">
+  <mat-card appearance="outlined" *ngFor="let user of users$">
+    <mat-card-content>
+      <p class="user-name">{{ user.name }}</p>
+      <p>{{ user.credits }} credits</p>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<button (click)="getUsers()">c</button>
