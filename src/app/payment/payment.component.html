@@ -1,0 +1,12 @@
+<mat-card appearance="outlined">
+  <mat-card-content>
+    <mat-form-field>
+      <mat-label>Select a user</mat-label>
+      <mat-select [(ngModel)]="selectedUser">
+        @for (user of users$; track user) {
+        <mat-option [value]="user.name">{{ user.name }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </mat-card-content>
+</mat-card>
