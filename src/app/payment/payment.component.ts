@@ -34,10 +34,6 @@ export class PaymentComponent {
     });
   }
 
-  showSelected() {
-    console.log(this.selectedUser);
-  }
-
   creditsTransaction(credits: number | string, id: number | string) {
     this.credits.creditsTransaction(credits, id).subscribe({
       next: (res) => {
@@ -49,13 +45,5 @@ export class PaymentComponent {
         console.error('Erro na requisição:', err);
       },
     });
-
-    console.log('transaction test');
   }
-
-  showUsers() {
-    console.log('show users', this.users$);
-  }
-
-  getUsers() {}
 }
