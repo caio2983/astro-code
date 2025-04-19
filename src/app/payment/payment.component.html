@@ -18,6 +18,7 @@
 
     <button
       mat-button
+      [disabled]="!selectedValue || +selectedValue <= 0 || !selectedUser"
       (click)="creditsTransaction(this.selectedValue, this.selectedUser)"
     >
       Confirm

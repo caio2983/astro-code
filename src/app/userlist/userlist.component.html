@@ -5,7 +5,9 @@
 <div class="user-list">
   <mat-card appearance="outlined" *ngFor="let user of users$">
     <mat-card-content>
-      <p class="user-name">{{ user.name }}</p>
+      <p class="user-name">
+        {{ user.name }} <span *ngIf="user.name === 'User 0'">- You</span>
+      </p>
       <p>{{ user.credits }} credits</p>
     </mat-card-content>
   </mat-card>

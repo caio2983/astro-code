@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CreditsService } from '../credits.service';
 import { Observable } from 'rxjs';
-import { AsyncPipe, NgFor } from '@angular/common';
+import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-userlist',
-  imports: [RouterOutlet, NgFor, AsyncPipe, MatCardModule],
+  imports: [RouterOutlet, NgFor, AsyncPipe, MatCardModule, NgIf],
   templateUrl: './userlist.component.html',
   styleUrl: './userlist.component.css',
 })
