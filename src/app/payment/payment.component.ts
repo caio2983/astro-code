@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-payment',
@@ -14,33 +15,47 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatSelectModule,
     MatInputModule,
     FormsModule,
+    MatButtonModule,
   ],
   templateUrl: './payment.component.html',
   styleUrl: './payment.component.css',
 })
 export class PaymentComponent {
   users$!: any;
-  user0!: any;
   transactions!: any[];
   selectedUser!: string;
+  selectedValue!: string;
 
   constructor(private credits: CreditsService) {}
-
   ngOnInit() {
-    this.getUsers();
+    this.credits.getUsers();
+    this.credits.users$.subscribe((users) => {
+      this.users$ = users.filter((user: any) => user.name !== 'User 0');
+    });
   }
 
   showSelected() {
     console.log(this.selectedUser);
   }
 
-  getUsers() {
-    this.credits.getUsers().subscribe((users) => {
-      users = users.filter((element) => element.name !== 'User 0');
-      this.user0 = users[0];
-      this.users$ = users;
+  creditsTransaction(credits: number | string, id: number | string) {
+    this.credits.creditsTransaction(credits, id).subscribe({
+      next: (res) => {
+        console.log('Requisição feita com sucesso:', res);
 
-      console.log(this.users$);
+        this.credits.setUsers(res);
+      },
+      error: (err) => {
+        console.error('Erro na requisição:', err);
+      },
     });
+
+    console.log('transaction test');
   }
+
+  showUsers() {
+    console.log('show users', this.users$);
+  }
+
+  getUsers() {}
 }

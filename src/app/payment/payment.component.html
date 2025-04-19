@@ -4,9 +4,25 @@
       <mat-label>Select a user</mat-label>
       <mat-select [(ngModel)]="selectedUser">
         @for (user of users$; track user) {
-        <mat-option [value]="user.name">{{ user.name }}</mat-option>
+        <mat-option [value]="user.id">{{ user.name }}</mat-option>
         }
       </mat-select>
     </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Credits Quantity"
+        [(ngModel)]="selectedValue"
+      />
+    </mat-form-field>
+
+    <button
+      mat-button
+      (click)="creditsTransaction(this.selectedValue, this.selectedUser)"
+    >
+      Confirm
+    </button>
+
+    <button (click)="showUsers()">Show users</button>
   </mat-card-content>
 </mat-card>

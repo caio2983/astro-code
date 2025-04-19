@@ -7,19 +7,33 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class CreditsService {
   private http = inject(HttpClient);
+  private users = new BehaviorSubject<any>([]);
+  users$ = this.users.asObservable();
 
-  getUsers(): Observable<any[]> {
+  constructor() {}
+
+  setUsers(users: any[]) {
+    this.users.next(users);
+  }
+
+  getUsers(): void {
     console.log('get user service');
-    return this.http.get<any[]>('http://localhost:3000/users');
+    this.http.get<any[]>('http://localhost:3000/users').subscribe((users) => {
+      this.users.next(users);
+    });
   }
 
   creditsTransaction(credits: string | number, id: number | string) {
-    return this.http.get(`http://localhost:3000/credit/${credits}/${id}`);
+    const creditsNum = Number(credits);
+    const idNum = Number(id);
+    console.log('teste creditss');
+    console.log(`http://localhost:3000/credit/${creditsNum}/${idNum}`);
+    return this.http.get<any[]>(
+      `http://localhost:3000/credit/${creditsNum}/${idNum}`
+    );
   }
 
   getTransactions() {
     return this.http.get<any[]>('http://localhost:3000/transactions');
   }
-
-  constructor() {}
 }

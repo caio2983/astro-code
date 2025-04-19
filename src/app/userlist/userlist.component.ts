@@ -20,8 +20,15 @@ export class UserlistComponent {
 
   constructor(private credits: CreditsService) {}
 
-  ngOnInit(): void {
-    this.getUsers();
+  ngOnInit() {
+    this.credits.getUsers();
+    this.credits.users$.subscribe((users) => {
+      console.log(users);
+      this.users$ = users;
+      const user0 = users.filter((user: any) => user.name === 'User 0');
+      this.user0 = user0[0];
+      console.log(this.user0);
+    });
   }
 
   getTransactions() {
@@ -29,25 +36,5 @@ export class UserlistComponent {
       this.transactions = data;
       console.log('dados recebidos:', data);
     });
-  }
-
-  getUsers() {
-    this.credits.getUsers().subscribe((users) => {
-      users = users.filter((element) => element.name !== 'User 0');
-      this.user0 = users[0];
-      this.users$ = users;
-
-      console.log('userssss ?????', this.users$);
-      console.log('user 0 ???', users[0]);
-    });
-
-    console.log(this.users$);
-  }
-
-  creditsTransaction(credits: number | string, id: number | string) {
-    // .subscribe() reacts to the data's arrival
-    this.credits.creditsTransaction(credits, id);
-
-    console.log('transaction test');
   }
 }
