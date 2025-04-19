@@ -121,4 +121,5 @@ app.listen(3000, () => {
   resolvers.createUser("User 2");
   resolvers.createUser("User 4");
   resolvers.createUser("User 5");
+  resolvers.creditTransaction(50, 1);
 });
