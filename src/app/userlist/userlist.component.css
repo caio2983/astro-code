@@ -5,6 +5,8 @@
   width: 33vw;
   margin: 8px;
   margin-right: 0;
+  overflow-y: auto;
+  max-height: 100vh;
 }
 
 .user-name {
