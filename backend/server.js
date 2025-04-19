@@ -71,6 +71,8 @@ const resolvers = {
     thirdParty.credits = Number(thirdParty.credits) + Number(creditsSent);
     console.log("user0 test after transaction", user0);
     console.log("third party test after transaction", thirdParty);
+
+    return providers.users;
   },
   getTransactions() {
     return providers.transactions;
@@ -100,7 +102,7 @@ app.get("/credit/:credits/:id", (req, res) => {
 
 app.get("/users", (req, res) => {
   const users = resolvers.users();
-  console.log("users route");
+
   res.json(users);
 });
 
