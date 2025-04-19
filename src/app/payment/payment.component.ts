@@ -42,7 +42,7 @@ export class PaymentComponent {
     this.credits.creditsTransaction(credits, id).subscribe({
       next: (res) => {
         console.log('Requisição feita com sucesso:', res);
-
+        this.credits.getTransactions();
         this.credits.setUsers(res);
       },
       error: (err) => {

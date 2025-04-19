@@ -10,6 +10,9 @@ export class CreditsService {
   private users = new BehaviorSubject<any>([]);
   users$ = this.users.asObservable();
 
+  private transactions = new BehaviorSubject<any>([]);
+  transactions$ = this.transactions.asObservable();
+
   constructor() {}
 
   setUsers(users: any[]) {
@@ -17,7 +20,6 @@ export class CreditsService {
   }
 
   getUsers(): void {
-    console.log('get user service');
     this.http.get<any[]>('http://localhost:3000/users').subscribe((users) => {
       this.users.next(users);
     });
@@ -34,6 +36,15 @@ export class CreditsService {
   }
 
   getTransactions() {
-    return this.http.get<any[]>('http://localhost:3000/transactions');
+    this.http
+      .get<any[]>('http://localhost:3000/transactions')
+      .subscribe((transactions) => {
+        console.log('transactions service', transactions);
+        this.transactions.next(transactions);
+      });
+  }
+
+  setTransactions(transactions: any) {
+    this.transactions.next(transactions);
   }
 }

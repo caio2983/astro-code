@@ -30,11 +30,4 @@ export class UserlistComponent {
       console.log(this.user0);
     });
   }
-
-  getTransactions() {
-    this.credits.getTransactions().subscribe((data) => {
-      this.transactions = data;
-      console.log('dados recebidos:', data);
-    });
-  }
 }
