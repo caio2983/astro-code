@@ -73,8 +73,6 @@ const resolvers = {
     providers.transactions.push(transaction);
 
     thirdParty.credits = Number(thirdParty.credits) + Number(creditsSent);
-    console.log("user0 test after transaction", user0);
-    console.log("third party test after transaction", thirdParty);
 
     return providers.users;
   },
@@ -98,7 +96,6 @@ app.get("/credit/:credits/:id", (req, res) => {
   const credits = req.params.credits;
   const id = req.params.id;
 
-  console.log("transaction done");
   const result = resolvers.creditTransaction(Number(credits), Number(id));
 
   if (result == 1) {
@@ -110,20 +107,18 @@ app.get("/credit/:credits/:id", (req, res) => {
 
 app.get("/users", (req, res) => {
   const users = resolvers.users();
-
   res.json(users);
 });
 
 app.get("/transactions", (req, res) => {
-  console.log(providers.transactions);
   res.json(providers.transactions);
 });
 
 app.listen(3000, () => {
-  console.log("server on");
+  console.log("Server on");
   resolvers.createUser("User 0");
   resolvers.createUser("User 1");
   resolvers.createUser("User 2");
-  console.log(providers.users);
-  resolvers.creditTransaction(50, 1);
+  resolvers.createUser("User 4");
+  resolvers.createUser("User 5");
 });

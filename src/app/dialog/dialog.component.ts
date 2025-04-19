@@ -25,4 +25,6 @@ import { MatFormField, MatLabel } from '@angular/material/input';
   templateUrl: './dialog.component.html',
   styleUrl: './dialog.component.css',
 })
-export class DialogComponent {}
+export class DialogComponent {
+  // This dialog box pops up when the user tries to transfer more credits than they have.
+}

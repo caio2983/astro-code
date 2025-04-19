@@ -37,18 +37,20 @@ export class PaymentComponent {
   selectedValue!: string;
   readonly dialog = inject(MatDialog);
 
+  // Credits transfer component
+
   constructor(private credits: CreditsService) {}
+
   ngOnInit() {
     this.credits.getUsers();
     this.credits.users$.subscribe((users) => {
       this.users$ = users.filter((user: any) => user.name !== 'User 0');
+      // Removes User 0 (the client) from the transfer options list
     });
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(DialogComponent, {
-      // data: {name: this.name(), animal: this.animal()},
-    });
+    this.dialog.open(DialogComponent, {});
   }
 
   creditsTransaction(credits: number | string, id: number | string) {
