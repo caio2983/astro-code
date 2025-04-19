@@ -39,7 +39,13 @@ export class PaymentComponent {
       next: (res) => {
         console.log('Requisição feita com sucesso:', res);
         this.credits.getTransactions();
-        this.credits.setUsers(res);
+
+        if (!res) {
+          console.log('no credits');
+        } else {
+          console.log('res payment', res);
+          this.credits.setUsers(res);
+        }
       },
       error: (err) => {
         console.error('Erro na requisição:', err);

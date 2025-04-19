@@ -51,6 +51,7 @@ const resolvers = {
     return user;
   },
   creditTransaction(creditsSent, id) {
+    let missingCredits = 0;
     const thirdParty = providers.users.find((item) => item.id === Number(id));
 
     const user0 = providers.users.find((item) => item.id === 0);
@@ -58,6 +59,9 @@ const resolvers = {
       user0.credits = user0.credits - creditsSent;
     } else {
       console.log("You don't have enough credits for that");
+      missingCredits = 1;
+
+      return 1;
     }
 
     const transaction = {
@@ -97,7 +101,12 @@ app.get("/credit/:credits/:id", (req, res) => {
   console.log("transaction done");
   const result = resolvers.creditTransaction(Number(credits), Number(id));
 
-  res.json(result);
+  if (missingCredits == 1) {
+    res.send("not enough credits");
+  } else {
+    res.json(resultTransaction);
+    console.log(result);
+  }
 });
 
 app.get("/users", (req, res) => {
