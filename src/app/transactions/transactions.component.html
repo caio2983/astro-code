@@ -1,8 +1,10 @@
-<mat-card appearance="outlined" *ngFor="let transaction of transactions">
-  <mat-card-content>
-    <p>
-      <span class="blue-bold">{{ transaction.nameThirdParty }}</span> received
-      <span class="blue-bold">{{ transaction.creditsSent }}</span> credits
-    </p>
-  </mat-card-content>
-</mat-card>
+<div class="mat-card-container">
+  <mat-card appearance="outlined" *ngFor="let transaction of transactions">
+    <mat-card-content>
+      <p>
+        <span class="blue-bold">{{ transaction.nameThirdParty }}</span> received
+        <span class="blue-bold">{{ transaction.creditsSent }}</span> credits
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>
