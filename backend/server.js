@@ -101,11 +101,10 @@ app.get("/credit/:credits/:id", (req, res) => {
   console.log("transaction done");
   const result = resolvers.creditTransaction(Number(credits), Number(id));
 
-  if (missingCredits == 1) {
-    res.send("not enough credits");
+  if (result == 1) {
+    res.send(null);
   } else {
-    res.json(resultTransaction);
-    console.log(result);
+    res.json(result);
   }
 });
 

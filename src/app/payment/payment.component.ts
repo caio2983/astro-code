@@ -37,14 +37,15 @@ export class PaymentComponent {
   creditsTransaction(credits: number | string, id: number | string) {
     this.credits.creditsTransaction(credits, id).subscribe({
       next: (res) => {
-        console.log('Requisição feita com sucesso:', res);
-        this.credits.getTransactions();
-
         if (!res) {
+          // popup function here !!!!
+
           console.log('no credits');
         } else {
           console.log('res payment', res);
+          this.credits.getTransactions();
           this.credits.setUsers(res);
+          console.log('Requisição feita com sucesso:', res);
         }
       },
       error: (err) => {
