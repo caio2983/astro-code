@@ -28,8 +28,7 @@ export class CreditsService {
   creditsTransaction(credits: string | number, id: number | string) {
     const creditsNum = Number(credits);
     const idNum = Number(id);
-    console.log('teste creditss');
-    console.log(`http://localhost:3000/credit/${creditsNum}/${idNum}`);
+
     return this.http.get<any[]>(
       `http://localhost:3000/credit/${creditsNum}/${idNum}`
     );
@@ -39,7 +38,6 @@ export class CreditsService {
     this.http
       .get<any[]>('http://localhost:3000/transactions')
       .subscribe((transactions) => {
-        console.log('transactions service', transactions);
         this.transactions.next(transactions);
       });
   }

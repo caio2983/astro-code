@@ -18,7 +18,6 @@ export class TransactionsComponent {
     this.credits.getTransactions();
     this.credits.transactions$.subscribe((transactions: any) => {
       this.transactions = transactions;
-      console.log('transactionsssss', this.transactions);
     });
   }
 }

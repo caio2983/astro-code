@@ -55,11 +55,8 @@ export class PaymentComponent {
     this.credits.creditsTransaction(credits, id).subscribe({
       next: (res) => {
         if (!res) {
-          // popup function here !!!!
           this.openDialog();
-          console.log('no credits');
         } else {
-          console.log('res payment', res);
           this.credits.getTransactions();
           this.credits.setUsers(res);
           console.log('Requisição feita com sucesso:', res);

@@ -7,7 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-userlist',
-  imports: [RouterOutlet, NgFor, AsyncPipe, MatCardModule, NgIf],
+  imports: [NgFor, MatCardModule, NgIf],
   templateUrl: './userlist.component.html',
   styleUrl: './userlist.component.css',
 })
@@ -23,11 +23,9 @@ export class UserlistComponent {
   ngOnInit() {
     this.credits.getUsers();
     this.credits.users$.subscribe((users) => {
-      console.log(users);
       this.users$ = users;
       const user0 = users.filter((user: any) => user.name === 'User 0');
       this.user0 = user0[0];
-      console.log(this.user0);
     });
   }
 }
