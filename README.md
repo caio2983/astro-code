@@ -1,4 +1,7 @@
 # AstroCode
+Astrocode fullstack challenge - https://github.com/Astrocoders/fullstack-challenge
+
+I developed a web app using **Angular**, **Node.js**, and **GraphQL** that simulates credit transfers between users. It supports configurable transaction fees, displays user balances, and tracks the full history of sent and received transfers. The Angular frontend communicates with a Node.js backend via GraphQL for efficient and real-time data updates.
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.6.
 
